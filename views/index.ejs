@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #6c63ff, #3b5998);
+      color: #ffffff;
+      padding: 20px;
+      border-bottom: 5px solid #ffcc00;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .header h1 i {
+      margin-right: 15px;
+      color: #ffcc00;
+    }
+
+    .header .btn {
+      background-color: #ffcc00;
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .header .btn:hover {
+      background-color: #ff9900;
+      transform: scale(1.05);
+    }
+
+    .card {
+      position: relative;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      height: 550px;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card-body {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card:hover .card-body {
+      opacity: 1;
+    }
+
+    .card-title {
+      font-weight: 700;
+      color: #ffcc00;
+    }
+
+    .card-subtitle,
+    .card-text,
+    .rating {
+      color: #f8f9fa;
+      margin-top: 10px;
+    }
+
+    .rating {
+      font-size: 1.1rem;
+    }
+
+    .btn-sm {
+      margin-right: 5px;
+      margin-top: 10px;
+    }
+
+    .btn-warning {
+      color: #ffffff;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="header">
+      <h1>
+        <i class="fas fa-film"></i> Movie Collection
+      </h1>
+      <a href="/add" class="btn btn-success">Add Movie</a>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <% movies.forEach(movie => { %>
+          <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
+            <div class="card">
+              <img src="<%= movie.poster %>" class="card-img-top" alt="<%= movie.title %> Poster">
+              <div class="card-body">
+                <h5 class="card-title"><%= movie.title %></h5>
+                <h6 class="card-subtitle mb-2"><%= movie.releaseDate.toDateString() %></h6>
+                <p class="card-text"><strong>Genre:</strong> <%= movie.genre %></p>
+                <p class="card-text"><%= movie.description %></p>
+                <p class="rating"><strong>Rating:</strong> <%= movie.rating %>/10</p>
+                <a href="/edit/<%= movie._id %>" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete/<%= movie._id %>" class="btn btn-danger btn-sm">Delete</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

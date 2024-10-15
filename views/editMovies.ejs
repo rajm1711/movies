@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= movie ? 'Edit Movie' : 'Add Movie' %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Edit Movie</h1>
+    <form action="/update/<%= movie._id %>" method="post" enctype="multipart/form-data">
+      
+      <!-- Movie Poster Upload -->
+      <div class="form-group">
+        <label for="poster" >Movie Poster</label>
+        <input type="file" id="poster" name="poster" class="form-control" >
+       
+        <small>Leave it blank to keep the current poster</small>
+      </div>
+
+      <!-- Movie Title -->
+      <div class="form-group">
+        <label for="title">Movie Title</label>
+        <input type="text" id="title" name="title" class="form-control" value="<%= movie.title %>" required>
+      </div>
+
+      <!-- Movie Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" class="form-control" rows="4" required><%=  movie.description %></textarea>
+      </div>
+
+      <!-- Release Date -->
+      <div class="form-group">
+        <label for="releaseDate">Release Date</label>
+        <input type="date" id="releaseDate" name="releaseDate" class="form-control" value="<%= movie.releaseDate.toISOString().split('T')[0] %>" required>
+      </div>
+
+      <!-- Genre -->
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" name="genre" class="form-control" value="<%= movie.genre %>" required>
+      </div>
+
+      <!-- Rating -->
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <input type="number" id="rating" name="rating" class="form-control" step="0.1" min="0" max="10" value="<%= movie.rating  %>" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="/" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>
+
+
+

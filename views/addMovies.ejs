@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Movie</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4 fw-bold">Add Movie</h1>
+    <form action="/add" method="post" enctype="multipart/form-data">
+      
+      <!-- Movie Poster Upload -->
+      <div class="form-group">
+        <label for="poster">Movie Poster</label>
+        <input type="file" id="poster" name="poster" class="form-control" required >
+      </div>
+
+      <!-- Movie Title -->
+      <div class="form-group">
+        <label for="title">Movie Title</label>
+        <input type="text" id="title" name="title" class="form-control" placeholder="Movie Title" required>
+      </div>
+
+      <!-- Movie Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" class="form-control" rows="4" placeholder="Movie Description" required> </textarea>
+      </div>
+
+      <!-- Release Date -->
+      <div class="form-group">
+        <label for="releaseDate">Release Date</label>
+        <input type="date" id="releaseDate" name="releaseDate" class="form-control"  required>
+      </div>
+
+      <!-- Genre -->
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" name="genre" class="form-control"  required>
+      </div>
+
+      <!-- Rating -->
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <input type="number" id="rating" name="rating" class="form-control" step="0.1" min="0" max="10"  required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="/" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>
+
